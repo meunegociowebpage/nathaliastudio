@@ -1,720 +1,117 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Nathalia Santos - Cartão de Visita</title>
-<style>
-		* {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-
-		/* Fundo geral claro */
-		.fundo-fixo {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100vw;
-			height: 100vh;
-			background-color: #f8f6f3; /* Bege claro premium */
-			background-image: url('fundo.jpg');
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: cover;
-			z-index: -1;
-		}
-
-		body {
-			font-family: 'Segoe UI', sans-serif;
-			text-align: center;
-			padding: 0px 15px;
-			color: #222; /* Texto padrão mais escuro para contraste */
-			position: relative;
-			z-index: 1;
-			margin: 0;
-		}
-
-		/* Logo destacada */
-		img.logo {
-			max-width: 260px;
-			height: auto;
-			filter: none; /* Remove sombras neon */
-			display: block;
-			margin: 20px auto;
-		}
-
-		/* Títulos */
-		h1, h3 {
-			color: #96592a; /* Cor caramelo da logo */
-			text-shadow: none; /* Remove brilho para estética minimalista */
-			margin: 10px 0;
-			font-weight: 600;
-		}
-
-		h1 {
-			font-size: 1.7em;
-		}
-		
-		h2 {
-			color: #96592a;
-			font-size: 1.7em;
-		}
-
-		h3 {
-			font-size: 1.3em;
-			color: #444;
-		}
-
-		/* Botões com design minimalista */
-		.btn {
-			display: block;
-			margin: 15px auto;
-			padding: 14px 20px;
-			border: 2px solid #96592a;
-			border-radius: 12px;
-			font-size: 18px;
-			font-weight: bold;
-			color: #fff;
-			background-color: #96592a;
-			text-align: center;
-			text-decoration: none;
-			width: 85%;
-			max-width: 340px;
-			cursor: pointer;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-		}
-
-		.btn:hover {
-			background-color: #a8733e;
-			border-color: #a8733e;
-			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-			transform: scale(1.02);
-		}
-
-		.btn:active {
-			transform: translateY(2px) scale(0.98);
-		}
-
-		#pixNumero {
-			display: none;
-		}
-
-		.horarios p {
-			margin: 0px;
-			font-size: 1.1em;
-			line-height: 1.5;
-			color: #333;
-		}
-
-
-		/* Mapa */
-		.mapa-container {
-			margin: 0px auto 0;
-			width: 90%;
-			max-width: 500px;
-			text-align: center;
-		}
-
-		.mapa-container iframe {
-			border: 0;
-			border-radius: 12px;
-			width: 100%;
-			height: 300px;
-			display: none;
-		}
-
-		.close {
-			position: absolute;
-			top: 20px;
-			right: 30px;
-			font-size: 32px;
-			color: #333;
-			text-decoration: none;
-		}
-
-		/* Carrossel */
-		.servico-container {
-			max-width: 400px;
-			margin: 20px auto;
-			border-radius: 18px;
-			overflow: hidden;
-			box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-			position: relative;
-			background: #fff;
-		}
-
-		.servico-info {
-			background: rgba(255,255,255,0.85);
-			color: #333;
-			padding: 10px 0;
-			position: absolute;
-			top: 0;
-			width: 100%;
-			border-radius: 18px 18px 0 0;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			z-index: 2;
-		}
-
-		.servico-info h2 {
-			font-size: 1.2em;
-			margin: 0;
-			font-weight: bold;
-			color: #c18e5c;
-		}
-
-		.carousel {
-			position: relative;
-			width: 100%;
-			overflow: hidden;
-			border-radius: 18px 18px 0 0;
-		}
-
-		.carousel-images {
-			display: flex;
-			overflow-x: auto;
-			scroll-snap-type: x mandatory;
-			scroll-behavior: smooth;
-			scrollbar-width: none;
-		}
-
-		.carousel-images::-webkit-scrollbar {
-			display: none;
-		}
-
-		.carousel-images img {
-			width: 100%;
-			flex-shrink: 0;
-			object-fit: cover;
-			scroll-snap-align: start;
-		}
-
-		.carousel-dots {
-			position: absolute;
-			bottom: 10px;
-			width: 100%;
-			text-align: center;
-			z-index: 3;
-		}
-
-		.carousel-dots span {
-			display: inline-block;
-			width: 8px;
-			height: 8px;
-			margin: 0 4px;
-			background: #c18e5c;
-			border-radius: 50%;
-			opacity: 0.5;
-			cursor: pointer;
-			transition: 0.3s;
-		}
-
-		.carousel-dots .active {
-			opacity: 1;
-			transform: scale(1.2);
-		}
-
-		.arrow {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			background-color: rgba(255,255,255,0.9);
-			border: none;
-			color: #333;
-			font-size: 20px;
-			padding: 10px 14px;
-			cursor: pointer;
-			border-radius: 50%;
-			z-index: 3;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-			transition: background-color 0.3s;
-		}
-
-		.arrow:hover {
-			background-color: #f1e7dd;
-		}
-
-		.arrow-left {
-			left: 10px;
-		}
-
-		.arrow-right {
-			right: 10px;
-		}
-		
-		/* Rodapé */
-		footer {
-			margin-top: 20px;
-			text-align: center;
-			background: #fff;
-			padding: 20px;
-			color: #555;
-			font-size: 14px;
-			border-top: 1px solid rgba(0, 0, 0, 0.08);
-		}
-		
-		#horarios {
-			border: rgba(150, 89, 42);
-			border: 2px solid #c28f5d;
-			border-radius: 12px;
-			color: #fff;
-			padding: 20px;
-			border-radius: 15px;
-			max-width: 400px;
-			margin: 20px auto;
-			text-align: center;
-			box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-		}
-		
-		.texto-horario {
-		color: rgba(150, 89, 42);
-		}
-		
-		.carousel-caption {
-		color: rgba(150, 89, 42);
-		font-weight: bold;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		}
-
-		/* ================= MODAL STYLES ================= */
-		.modal {
-		  display: none;
-		  position: fixed;
-		  z-index: 1000;
-		  padding-top: 80px;
-		  left: 0;
-		  top: 0;
-		  width: 100%;
-		  height: 100%;
-		  overflow: auto;
-		  background-color: rgba(0, 0, 0, 0.6);
-		  opacity: 0;
-		  pointer-events: none;
-		  transition: opacity 0.3s ease-in-out;
-		}
-
-		.modal.show {
-		  display: block;
-		  opacity: 1;
-		  pointer-events: auto;
-		}
-
-		.modal-content {
-		  background-color: #fff;
-		  margin: auto;
-		  padding: 20px;
-		  border: 2px solid #c18e5c;
-		  border-radius: 15px;
-		  width: 90%;
-		  max-width: 400px;
-		  text-align: center;
-		  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-		  transform: scale(0.9);
-		  opacity: 0;
-		  transition: all 0.3s ease-in-out;
-		}
-
-		.modal.show .modal-content {
-		  transform: scale(1);
-		  opacity: 1;
-		}
-
-		.modal-content h2 {
-		  color: #c18e5c;
-		  margin-bottom: 10px;
-		}
-
-		.input-modal {
-		  width: 80%;
-		  padding: 10px;
-		  margin-top: 10px;
-		  border-radius: 8px;
-		  border: 1px solid #ccc;
-		  font-size: 16px;
-		}
-
-		.modal-content label {
-		  display: block;
-		  text-align: left;
-		  margin: 8px 0;
-		  color: #333;
-		}
-
-		.modal-content .btn {
-		  width: 80%;
-		  margin-top: 15px;
-		}
-
-		.close {
-		  position: absolute;
-		  right: 20px;
-		  top: 15px;
-		  font-size: 28px;
-		  font-weight: bold;
-		  cursor: pointer;
-		}
-
-	  .horario-btn {
-		padding: 10px 15px;
-		margin: 5px;
-		border: 2px solid #c18e5c;
-		border-radius: 8px;
-		background: #fff;
-		color: #c18e5c;
-		font-weight: bold;
-		cursor: pointer;
-		transition: all 0.2s ease-in-out;
-	  }
-
-	  .horario-btn:hover {
-		background: #c18e5c;
-		color: #fff;
-	  }
-
-	  .horario-btn.selecionado {
-		background: #c18e5c;
-		color: #fff;
-	  }
-		
-	</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nathalia Santos - Cartão de Visita</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0077cc">
 </head>
 <body>
-<div class="fundo-fixo"></div>
-<img alt="Logo Nathalia Santos" class="logo" src="logo.png"/>
+  <div class="fundo-fixo"></div>
+  <img src="logo.png" alt="Logo Nathalia Santos" class="logo"/>
 
-<a class="btn" href="https://www.instagram.com/nathaliaa_sanntos" target="_blank">Instagram</a>
+  <a class="btn" href="https://www.instagram.com/nathaliaa_sanntos" target="_blank">Instagram</a>
+  <a class="btn" href="https://www.facebook.com/share/1PPGycjUdg" target="_blank">Facebook</a>
+  <a class="btn" href="https://www.tiktok.com/@nathaliasantosstudio?_t=ZM-8za2qdb10NB&_r=1" target="_blank">Tiktok</a>
 
-<a class="btn" href="https://www.facebook.com/share/1PPGycjUdg" target="_blank">Facebook</a>
-
-<a class="btn" href="https://www.tiktok.com/@nathaliasantosstudio?_t=ZM-8za2qdb10NB&amp;_r=1" target="_blank">Tiktok</a>
-
-<a class="btn" href="#" id="botaoMapa" onclick="toggleMapa()">Localização</a>
-<div class="mapa-container">
-<iframe allowfullscreen="" height="450" id="meuMapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.4305842732833!2d-44.03944352452437!3d-22.600390626993086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9ea15dc54dd6a9%3A0x1347d713a242383b!2sR.%20Nossa%20Sra.%20da%20Concei%C3%A7%C3%A3o%2C%20167%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027175-000!5e0!3m2!1spt-BR!2sbr!4v1757411788977!5m2!1spt-BR!2sbr" style="border:0;" width="600"></iframe>
-</div>
-
-<a class="btn" href="javascript:void(0)" onclick="abrirModal('modalServicos')">Agende seu horário</a>
-
-<div id="horarios">
-  <p class="texto-horario"><strong>Segunda a Sexta:</strong><br>9h às 12h | 13h às 19h</p>
-  <p class="texto-horario"><strong>Sábado:</strong><br>8h às 17h</p>
-</div>
-
-
-<!-- Carrossel -->
-<div class="servico-container">
-<div class="carousel-caption" id="carouselCaption"></div>
-<div class="carousel">
-<button class="arrow arrow-left">❮</button>
-<div class="carousel-images" id="carouselImages">
-<img alt="Imagem 1" src="img1.jpg"/>
-<img alt="Imagem 2" src="img2.jpeg"/>
-<img alt="Imagem 3" src="img3.jpeg"/>
-<img alt="Imagem 4" src="img4.jpeg"/>
-<img alt="Imagem 5" src="img5.jpeg"/>
-<img alt="Imagem 6" src="img6.jpeg"/>
-<img alt="Imagem 7" src="img7.jpeg"/>
-<img alt="Imagem 8" src="img8.jpeg"/>
-</div>
-<button class="arrow arrow-right">❯</button>
-<div class="carousel-dots" id="carouselDots">
-<span class="active"></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-</div>
-</div>
-</div>
-<!-- Fim do Carrossel -->
-<footer>
-<p>© 2025 - Todos os direitos reservados.</p>
-</footer>
-<script>
-    // Mapa
-    function toggleMapa() {
-      const mapa = document.getElementById("meuMapa");
-      const botao = document.getElementById("botaoMapa");
-      if (mapa.style.display === "block") {
-        mapa.style.display = "none";
-        botao.innerText = "Localização";
-      } else {
-        mapa.style.display = "block";
-        botao.innerText = "Ocultar Localização";
-      }
-    }
-
-    // Carrossel
-	
-	const captions = [
-	  "A profissional e as técnicas...",
-	  "design com henna...",
-	  "clássico fio a fio...",
-	  "volume brasileiro...",
-	  "volume 5D...",
-	  "design personalizado...",
-	  "brow lamination...",
-	  "lash lifting."
-	];
-	
-	const carouselCaption = document.getElementById("carouselCaption");
-	updateCaption(0);
-    const carousel = document.querySelector('.carousel-images');
-    const dots = document.querySelectorAll('.carousel-dots span');
-    const slides = document.querySelectorAll('.carousel-images img');
-    const prevButton = document.querySelector('.arrow-left');
-    const nextButton = document.querySelector('.arrow-right');
-
-    let slideWidth = carousel.clientWidth;
-
-    window.addEventListener('resize', () => {
-      slideWidth = carousel.clientWidth;
-    });
-
-	function updateCaption(index) {
-		if (captions[index]) {
-			carouselCaption.textContent = captions[index];
-		}
-}
-
-    function updateDots(index) {
-      dots.forEach(dot => dot.classList.remove('active'));
-      if (dots[index]) dots[index].classList.add('active');
-    }
-
-	function goToSlide(index) {
-	  carousel.scrollTo({
-		left: slideWidth * index,
-		behavior: 'smooth'
-	  });
-	  updateDots(index);
-	  updateCaption(index);
-	}
-
-    function getCurrentIndex() {
-      return Math.round(carousel.scrollLeft / slideWidth);
-    }
-
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => goToSlide(idx));
-    });
-
-    prevButton.addEventListener('click', () => {
-      const index = getCurrentIndex();
-      const newIndex = Math.max(index - 1, 0);
-      goToSlide(newIndex);
-    });
-
-    nextButton.addEventListener('click', () => {
-      const index = getCurrentIndex();
-      const newIndex = Math.min(index + 1, slides.length - 1);
-      goToSlide(newIndex);
-    });
-
-	let isScrolling;
-	carousel.addEventListener('scroll', () => {
-	  clearTimeout(isScrolling);
-	  isScrolling = setTimeout(() => {
-		const index = getCurrentIndex();
-		updateDots(index);
-		updateCaption(index);
-	  }, 100);
-	});
-  </script>
-
-<!-- ================= MODAIS DE AGENDAMENTO ================= -->
-<!-- Modal 1: Escolher serviços -->
-<div class="modal" id="modalServicos">
-<div class="modal-content">
-<span class="close" onclick="fecharModal('modalServicos')">×</span>
-<h2>Escolha seus serviços</h2>
-<form id="formServicos">
-<label><input name="servicos" type="checkbox" value="Design Personalizado"/> Design Personalizado</label><br/>
-<label><input name="servicos" type="checkbox" value="Design Personalizado (Henna)"/> Design Personalizado (Henna)</label><br/>
-<label><input name="servicos" type="checkbox" value="Extensão de cílios"/> Extensão de Cílios (variadas técnicas)</label><br/>
-<label><input name="servicos" type="checkbox" value="Design masculino"/> Design Masculino (sobrancelhas)</label><br/>
-<label><input name="servicos" type="checkbox" value="Brow Lamination"/> Brow Lamination</label><br/>
-<label><input name="servicos" type="checkbox" value="Lash Lifting"/> Lash Lifting</label><br/>
-<label><input name="servicos" type="checkbox" value="Depilação de Buço"/> Depilação de Buço</label><br/>
-</form>
-<button class="btn" onclick="validarServicos()">Próximo</button>
-</div>
-</div>
-<!-- Modal 2: Escolher data e hora -->
-<div class="modal" id="modalData">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal('modalData')">×</span>
-    <h2>Agende sua data</h2>
-    <p>Selecione uma data e um horário:</p>
-    <input class="input-modal" id="dataAgendamento" type="date" /><br/><br/>
-    <div id="horariosDisponiveis" style="display:none; flex-wrap: wrap; gap: 8px; justify-content: center;"></div>
-    <br/>
-    <button class="btn" onclick="validarDataHora()">Próximo</button>
+  <a class="btn" href="#" id="botaoMapa" onclick="toggleMapa()">Localização</a>
+  <div class="mapa-container">
+    <iframe id="meuMapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.4305842732833!2d-44.03944352452437!3d-22.600390626993086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9ea15dc54dd6a9%3A0x1347d713a242383b!2sR.%20Nossa%20Sra.%20da%20Concei%C3%A7%C3%A3o%2C%20167%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027175-000!5e0!3m2!1spt-BR!2sbr!4v1757411788977!5m2!1spt-BR!2sbr" 
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
-</div>
 
-<!-- Modal 3: Dados do cliente -->
-<div class="modal" id="modalCliente">
-<div class="modal-content">
-<span class="close" onclick="fecharModal('modalCliente')">×</span>
-<h2>Seus dados</h2>
-<input class="input-modal" id="nomeCliente" placeholder="Digite seu nome completo" type="text"/><br/><br/>
-<button class="btn" onclick="enviarAgendamento()">Enviar pelo WhatsApp</button>
-</div>
-</div>
-<script>
-// Função para abrir modal
-function abrirModal(id) {
-    const modal = document.getElementById(id);
-    modal.style.display = "block"; // garante que volte a aparecer
-    setTimeout(() => {
-        modal.classList.add("show"); // aplica animação suavemente
-    }, 10);
-}
+  <a class="btn" href="javascript:void(0)" onclick="abrirModal('modalServicos')">Agende seu horário</a>
 
-// Função para fechar modal
-function fecharModal(id) {
-    const modal = document.getElementById(id);
-    modal.classList.remove("show");
-    setTimeout(() => {
-        modal.style.display = "none";
-    }, 300);
-}
+  <div id="horarios">
+    <p class="texto-horario"><strong>Segunda a Sexta:</strong><br>9h às 12h | 13h às 19h</p>
+    <p class="texto-horario"><strong>Sábado:</strong><br>8h às 17h</p>
+  </div>
 
-// Fechar modal clicando fora
-window.onclick = function(event) {
-    const modals = document.getElementsByClassName('modal');
-    for (let i = 0; i < modals.length; i++) {
-        if (event.target === modals[i]) {
-            fecharModal(modals[i].id);
-        }
-    }
-}
+  <!-- Carrossel -->
+  <div class="servico-container">
+    <div class="carousel-caption" id="carouselCaption"></div>
+    <div class="carousel">
+      <button class="arrow arrow-left">❮</button>
+      <div class="carousel-images" id="carouselImages">
+        <img src="img1.jpg" alt="Imagem 1"/>
+        <img src="img2.jpeg" alt="Imagem 2"/>
+        <img src="img3.jpeg" alt="Imagem 3"/>
+        <img src="img4.jpeg" alt="Imagem 4"/>
+        <img src="img5.jpeg" alt="Imagem 5"/>
+        <img src="img6.jpeg" alt="Imagem 6"/>
+        <img src="img7.jpeg" alt="Imagem 7"/>
+        <img src="img8.jpeg" alt="Imagem 8"/>
+		<img src="img9.jpeg" alt="Imagem 9"/>
+      </div>
+      <button class="arrow arrow-right">❯</button>
+      <div class="carousel-dots" id="carouselDots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+		<span></span>
+      </div>
+    </div>
+  </div>
+  <!-- Fim do Carrossel -->
 
-// =================== AGENDAMENTO ===================
-const dataInput = document.getElementById("dataAgendamento");
-const hoje = new Date().toISOString().split("T")[0];
-dataInput.min = hoje;
+  <footer>
+    <p>© 2025 - Todos os direitos reservados.</p>
+  </footer>
 
-const horariosDiv = document.getElementById("horariosDisponiveis");
-let horaSelecionada = "";
+  <!-- ================= MODAIS ================= -->
+  <!-- Modal Serviços -->
+  <div id="modalServicos" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal('modalServicos')">×</span>
+      <h2>Escolha seus serviços</h2>
+      <form id="formServicos">
+        <label><input type="checkbox" name="servicos" value="Design Personalizado"/> Design Personalizado</label><br/>
+        <label><input type="checkbox" name="servicos" value="Design Personalizado (Henna)"/> Design Personalizado (Henna)</label><br/>
+        <label><input type="checkbox" name="servicos" value="Extensão de cílios"/> Extensão de Cílios (variadas técnicas)</label><br/>
+        <label><input type="checkbox" name="servicos" value="Design masculino"/> Design Masculino</label><br/>
+        <label><input type="checkbox" name="servicos" value="Brow Lamination"/> Brow Lamination</label><br/>
+        <label><input type="checkbox" name="servicos" value="Lash Lifting"/> Lash Lifting</label><br/>
+        <label><input type="checkbox" name="servicos" value="Depilação de Buço"/> Depilação de Buço</label><br/>
+      </form>
+      <button class="btn" onclick="validarServicos()">Próximo</button>
+    </div>
+  </div>
 
-// Função para gerar horários disponíveis de 30 em 30 minutos
-function gerarHorarios(diaSemana) {
-    let horarios = [];
-    if (diaSemana >= 1 && diaSemana <= 5) {
-        // Segunda a Sexta
-        for (let h = 9; h < 12; h++) {
-            horarios.push(`${h.toString().padStart(2,"0")}:00`);
-            horarios.push(`${h.toString().padStart(2,"0")}:30`);
-        }
-        for (let h = 13; h < 19; h++) {
-            horarios.push(`${h.toString().padStart(2,"0")}:00`);
-            horarios.push(`${h.toString().padStart(2,"0")}:30`);
-        }
-    } else if (diaSemana === 6) {
-        // Sábado
-        for (let h = 8; h < 17; h++) {
-            horarios.push(`${h.toString().padStart(2,"0")}:00`);
-            horarios.push(`${h.toString().padStart(2,"0")}:30`);
-        }
-    }
-    return horarios;
-}
+  <!-- Modal Data -->
+  <div id="modalData" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal('modalData')">×</span>
+      <h2>Agende sua data</h2>
+      <input type="date" id="dataAgendamento" class="input-modal"/><br/><br/>
+      <div id="horariosDisponiveis" style="display:none; flex-wrap: wrap; gap: 8px; justify-content: center;"></div>
+      <button class="btn" onclick="validarDataHora()">Próximo</button>
+    </div>
+  </div>
 
+  <!-- Modal Cliente -->
+  <div id="modalCliente" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal('modalCliente')">×</span>
+      <h2>Seus dados</h2>
+      <input type="text" id="nomeCliente" class="input-modal" placeholder="Digite seu nome completo"/><br/><br/>
+      <button class="btn" onclick="enviarAgendamento()">Enviar pelo WhatsApp</button>
+    </div>
+  </div>
 
-// Quando a data mudar
-dataInput.addEventListener("change", () => {
-    const dataSelecionada = new Date(dataInput.value);
-    const diaSemana = dataSelecionada.getDay();
-
-    horariosDiv.innerHTML = "";
-    horaSelecionada = "";
-
-    if (diaSemana === 0) {
-        horariosDiv.style.display = "none";
-        alert("Não há atendimento aos domingos. Escolha outra data.");
-        dataInput.value = "";
-        return;
-    }
-
-    const horarios = gerarHorarios(diaSemana);
-
-    horarios.forEach(h => {
-        const btn = document.createElement("button");
-        btn.textContent = h;
-        btn.type = "button";
-        btn.classList.add("horario-btn");
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".horario-btn").forEach(b => b.classList.remove("selecionado"));
-            btn.classList.add("selecionado");
-            horaSelecionada = h;
-        });
-        horariosDiv.appendChild(btn);
-    });
-
-    horariosDiv.style.display = "flex";
-});
-
-// Enviar agendamento pelo WhatsApp
-// Enviar agendamento pelo WhatsApp
-function enviarAgendamento() {
-    const nome = document.getElementById("nomeCliente").value.trim();
-    const dataInputValue = dataInput.value; // yyyy-mm-dd
-
-    // Converte para dd/mm/aa
-    const partes = dataInputValue.split("-");
-    const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`; // dd/mm/aa
-
-    const servicosSelecionados = Array.from(document.querySelectorAll('input[name="servicos"]:checked')).map(el => el.value);
-
-    if (!nome || !dataInputValue || !horaSelecionada || servicosSelecionados.length === 0) {
-        alert("Por favor, preencha todos os campos antes de enviar.");
-        return;
-    }
-
-    const mensagem = `Olá Nathália! Gostaria de verificar a disponibilidade de um horário. %0A%0A*Nome:* ${nome}%0A*Serviços:* ${servicosSelecionados.join(", ")}%0A*Data:* ${dataFormatada}%0A*Hora:* ${horaSelecionada}`;
-    const url = `https://wa.me/5524998482184?text=${mensagem}`;
-    window.open(url);
-    fecharModal("modalCliente");
-}
-
-
-function validarServicos() {
-    const servicosSelecionados = document.querySelectorAll('input[name="servicos"]:checked');
-    if (servicosSelecionados.length === 0) {
-        alert("Selecione pelo menos um serviço antes de continuar.");
-        return;
-    }
-    fecharModal("modalServicos");
-    abrirModal("modalData");
-}
-
-function validarDataHora() {
-    const data = document.getElementById("dataAgendamento").value;
-    if (!data) {
-        alert("Selecione uma data antes de continuar.");
-        return;
-    }
-    if (!horaSelecionada) {
-        alert("Selecione um horário antes de continuar.");
-        return;
-    }
-    fecharModal("modalData");
-    abrirModal("modalCliente");
-}
-
-</script>
+  <script src="script.js"></script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log("Service Worker registrado!"))
+      .catch(err => console.error("Erro ao registrar SW:", err));
+  }
+  </script>
 </body>
 </html>
