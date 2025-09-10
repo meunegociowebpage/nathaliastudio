@@ -13,7 +13,7 @@ function toggleMapa() {
 
 // ================= CARROSSEL =================
 const captions = [
-  "A profissional e as técnicas...",
+  "A profissional e seus trabalhos...",
   "design com henna...",
   "clássico fio a fio...",
   "volume brasileiro...",
