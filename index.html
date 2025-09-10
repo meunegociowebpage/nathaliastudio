@@ -65,45 +65,58 @@
     <p>© 2025 - Todos os direitos reservados.</p>
   </footer>
 
-  <!-- ================= MODAIS ================= -->
-  <!-- Modal Serviços -->
-  <div id="modalServicos" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fecharModal('modalServicos')">×</span>
-      <h2>Escolha seus serviços</h2>
-      <form id="formServicos">
-        <label><input type="checkbox" name="servicos" value="Design Personalizado"/> Design Personalizado</label><br/>
-        <label><input type="checkbox" name="servicos" value="Design Personalizado (Henna)"/> Design Personalizado (Henna)</label><br/>
-        <label><input type="checkbox" name="servicos" value="Extensão de cílios"/> Extensão de Cílios (variadas técnicas)</label><br/>
-        <label><input type="checkbox" name="servicos" value="Design masculino"/> Design Masculino</label><br/>
-        <label><input type="checkbox" name="servicos" value="Brow Lamination"/> Brow Lamination</label><br/>
-        <label><input type="checkbox" name="servicos" value="Lash Lifting"/> Lash Lifting</label><br/>
-        <label><input type="checkbox" name="servicos" value="Depilação de Buço"/> Depilação de Buço</label><br/>
-      </form>
-      <button class="btn" onclick="validarServicos()">Próximo</button>
-    </div>
-  </div>
+	<!-- ================= MODAIS ================= -->
+	<!-- Modal Serviços -->
+	<div id="modalServicos" class="modal">
+	  <div class="modal-content">
+		<span class="close" onclick="fecharModal('modalServicos')">×</span>
+		<h2>Escolha seus serviços</h2>
 
-  <!-- Modal Data -->
-  <div id="modalData" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fecharModal('modalData')">×</span>
-      <h2>Agende sua data</h2>
-      <input type="date" id="dataAgendamento" class="input-modal"/><br/><br/>
-      <div id="horariosDisponiveis" style="display:none; flex-wrap: wrap; gap: 8px; justify-content: center;"></div>
-      <button class="btn" onclick="validarDataHora()">Próximo</button>
-    </div>
-  </div>
+		<div class="modal-body">
+		  <form id="formServicos">
+			<label><input type="checkbox" name="servicos" value="Design Personalizado"/> Design Personalizado</label>
+			<label><input type="checkbox" name="servicos" value="Design Personalizado (Henna)"/> Design Personalizado (Henna)</label>
+			<label><input type="checkbox" name="servicos" value="Extensão de cílios"/> Extensão de Cílios (variadas técnicas)</label>
+			<label><input type="checkbox" name="servicos" value="Design masculino"/> Design Masculino</label>
+			<label><input type="checkbox" name="servicos" value="Brow Lamination"/> Brow Lamination</label>
+			<label><input type="checkbox" name="servicos" value="Lash Lifting"/> Lash Lifting</label>
+			<label><input type="checkbox" name="servicos" value="Depilação de Buço"/> Depilação de Buço</label>
+		  </form>
+		</div>
 
-  <!-- Modal Cliente -->
-  <div id="modalCliente" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fecharModal('modalCliente')">×</span>
-      <h2>Seus dados</h2>
-      <input type="text" id="nomeCliente" class="input-modal" placeholder="Digite seu nome completo"/><br/><br/>
-      <button class="btn" onclick="enviarAgendamento()">Enviar pelo WhatsApp</button>
-    </div>
-  </div>
+		<button class="btn" onclick="validarServicos()">Próximo</button>
+	  </div>
+	</div>
+
+	<!-- Modal Data -->
+	<div id="modalData" class="modal">
+	  <div class="modal-content">
+		<span class="close" onclick="fecharModal('modalData')">×</span>
+		<h2>Agende sua data</h2>
+
+		<div class="modal-body">
+		  <input type="date" id="dataAgendamento" class="input-modal"/><br/><br/>
+		  <div id="horariosDisponiveis" style="display:none; flex-wrap: wrap; gap: 8px; justify-content: center;"></div>
+		</div>
+
+		<button class="btn" onclick="validarDataHora()">Próximo</button>
+	  </div>
+	</div>
+
+	<!-- Modal Cliente -->
+	<div id="modalCliente" class="modal">
+	  <div class="modal-content">
+		<span class="close" onclick="fecharModal('modalCliente')">×</span>
+		<h2>Seus dados</h2>
+
+		<div class="modal-body">
+		  <input type="text" id="nomeCliente" class="input-modal" placeholder="Digite seu nome completo"/>
+		</div>
+
+		<button class="btn" onclick="enviarAgendamento()">Enviar pelo WhatsApp</button>
+	  </div>
+	</div>
+
 
   <script src="script.js"></script>
   <script>

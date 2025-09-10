@@ -74,6 +74,8 @@ h3 {
   border: 0;
   border-radius: 12px;
   width: 100%;
+  max-width: 340px;
+  margin: 20px auto;
   height: 300px;
   display: none;
 }
@@ -165,7 +167,7 @@ footer {
   border: 2px solid #c28f5d;
   border-radius: 15px;
   padding: 20px;
-  max-width: 400px;
+  max-width: 340px;
   margin: 20px auto;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
@@ -191,6 +193,22 @@ footer {
   pointer-events: none;
   transition: opacity 0.3s;
   padding-top: 80px;
+}
+
+.modal-body {
+  text-align: left;      /* força alinhamento à esquerda */
+  padding: 10px 20px;    /* espaço lateral */
+}
+
+.modal-body label {
+  display: block;        /* cada item em uma linha */
+  margin: 6px 0;         /* espaçamento entre os itens */
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-header h2 {
+  text-align: center;    /* mantém o título centralizado */
 }
 
 .modal.show {
@@ -227,10 +245,35 @@ footer {
   margin-top: 10px;
 }
 
+.modal-content h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.modal-body {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.modal-body label {
+  display: block;
+  margin: 6px 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.input-modal {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
 .close {
   position: absolute;
-  top: -5px; /* move o X mais pra cima */
-  right: 10px;
+  top: 15px;
+  right: 20px;
   font-size: 1.6rem;
 }
 
